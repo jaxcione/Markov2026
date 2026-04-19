@@ -1,8 +1,8 @@
-import numpy as np
+import numpy as np 
 
-Q=[[-2,1,1],[1,-1,0],[1,0,-1]] #rate matrix 
+P = [[-1,1,0,0],[0,-1,1,0],[0,0,-1,1],[1,0,0,-1]]
 
-eigenvals, eigenvect = np.linalg.eig(Q) #obtaing eigen vals and vecs 
+eigenvals, eigenvect = np.linalg.eig(P) #obtaing eigen vals and vecs 
 idx = np.argsort(eigenvals.real) #soring them by size 
 eigenvals = eigenvals[idx]
 eigenvect = eigenvect[:, idx]  
@@ -15,9 +15,9 @@ for i in range(len(eigenvals)): #printing so i can see them
         print(f"  {component.real:.4f} + {component.imag:.4f}i")
 
 V =eigenvect   #eigenvec matrix
-y0 = np.array([0, 1, 0]) #intitial conditrion 
+y0 = np.array([1/3, 2/3, 0, 0]) #intitial conditrion 
 c = np.linalg.solve(V, y0) #coeff
 
 print("Coefficients c_i:")
 for i, ci in enumerate(c):
-    print(f"  c{i+1} = {ci.real:.4f} + {ci.imag:.4f}i") #printing coeffx
+    print(f"  c{i+1} = {ci.real:.4f} + {ci.imag:.4f}i") #printing coeff
